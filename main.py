@@ -28,7 +28,7 @@ class main:
         self.hard_maximum_guesses = 5
         self.last_guessed_number = None
         self.hints = 0
-        self.maximum_hints = 5 if self.mode != 3 else 1
+        self.maximum_hints = 5 if self.mode != 3 else 0
         self.msg = ''
         self.number = self.generate_random_number()
 
