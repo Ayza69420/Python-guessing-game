@@ -34,6 +34,8 @@ class main:
 
 
     def won(self):
+        system('cls')
+        
         print(f'{FORE.GREEN}{STYLE.BRIGHT}You got the number right!{FORE.RESET}')
         print(f'Amount of guesses taken: {FORE.RED if self.guesses > 10 else FORE.GREEN}{STYLE.BRIGHT}{self.guesses}{FORE.RESET}')
         print(f'Time taken: {FORE.RED if round(int(time()-self.time_taken)) > 60 else FORE.GREEN}{STYLE.BRIGHT}{time()-self.time_taken}{FORE.RESET} seconds')
