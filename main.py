@@ -10,7 +10,6 @@ class main:
         1 = Easy\n
         2 = Medium\n
         3 = Hard\n
-
         Default value being equal to easy.
         '''
 
@@ -37,9 +36,9 @@ class main:
     def won(self):
         system('cls')
         
-        print(f'{FORE.GREEN}{STYLE.BRIGHT}You got the number right!{FORE.RESET}')
+        print(f'{FORE.GREEN}{STYLE.BRIGHT}You got the number {self.number} right!{FORE.RESET}')
         print(f'Amount of guesses taken: {FORE.RED if self.guesses > 10 else FORE.GREEN}{STYLE.BRIGHT}{self.guesses}{FORE.RESET}')
-        print(f'Time taken: {FORE.RED if round(int(time()-self.time_taken)) > 60 else FORE.GREEN}{STYLE.BRIGHT}{time()-self.time_taken}{FORE.RESET} seconds')
+        print(f'Time taken: {FORE.RED if round(int(time()-self.time_taken)) >= 60 else FORE.GREEN}{STYLE.BRIGHT}{round(int(time()-self.time_taken))}{FORE.RESET} seconds')
         self.guessed = True
 
     def lost(self):
