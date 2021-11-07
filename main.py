@@ -45,7 +45,7 @@ class main:
 
     def generate_random_number(self): 
         if self.mode == 1: # easy
-            return randint(10,15)
+            return randint(1,15)
         elif self.mode == 2: # medium
             return randint(50,150)
         elif self.mode == 3: # hard
