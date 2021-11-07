@@ -1,4 +1,4 @@
-from time import time, sleep
+from time import time
 from random import randint
 from colorama import Fore as FORE, Style as STYLE
 from os import system
@@ -26,9 +26,10 @@ class main:
         self.time_taken = time()
         self.guesses = 0
         self.hard_maximum_guesses = 5
+        self.hard_maximum_hints = 1
         self.last_guessed_number = None
         self.hints = 0
-        self.maximum_hints = 5 if self.mode != 3 else 0
+        self.maximum_hints = 5
         self.msg = ''
         self.number = self.generate_random_number()
 
@@ -74,22 +75,29 @@ class main:
 
                     if guessed_number.isalpha():
                         if guessed_number.lower() == 'hint':
-                            if self.last_guessed_number != None and self.hints <= self.maximum_hints:
-                                self.hints += 1
+                            if self.last_guessed_number != None and self.hints < (self.maximum_hints if self.mode != 3 else self.hard_maximum_hints):
 
                                 if self.last_guessed_number < self.number:
                                     self.msg = ('Too low')
+                                    self.hints += 1
                                     continue
                                 elif self.last_guessed_number > self.number:
                                     self.msg = ('Too high')
+                                    self.hints += 1
                                     continue
-
-                            elif self.hints >= self.maximum_hints:
+                                    
+                            elif self.mode == 3:
+                                self.msg = (f'{FORE.RED}{STYLE.BRIGHT}You cannot take more than {self.hard_maximum_hints} hints.{STYLE.BRIGHT}{FORE.RESET}')
+                                continue                                
+                            elif self.mode != 3:
                                 self.msg = (f'{FORE.RED}{STYLE.BRIGHT}You cannot take more than {self.maximum_hints} hints.{STYLE.BRIGHT}{FORE.RESET}')
                                 continue
+
                             else:
                                 self.msg = ('You must make a first guess.')
-                                continue         
+                                continue   
+
+                            
                     else:
                         self.last_guessed_number = int(guessed_number)
                         self.guesses += 1
