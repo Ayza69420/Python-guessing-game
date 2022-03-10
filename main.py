@@ -16,7 +16,7 @@ class main:
         try:
             assert(mode == 1 or mode == 2 or mode == 3)
         except AssertionError:
-            print('Mode must be 1 (Easy) or 2 (Medium) or 3 (Hard).')
+            print('Mode must be in range of 1-3.')
             exit()
 
 
@@ -110,7 +110,9 @@ class main:
                     print('You must input an integer.')
             self.lost()
 
-
-game = main() # Takes one argument, the mode which is set to 1 (Easy) as default.
-
-game.start()
+try:
+    game = main(int(input("What mode would you like to play on? (1: easy, 2: medium, 3: hard)\n")))
+    
+    game.start()
+except ValueError:
+    print("You must input only a number (in range of 1-3)")
